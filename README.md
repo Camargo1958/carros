@@ -177,5 +177,6 @@ Documentação oficial de CBVs: https://docs.djangoproject.com/pt-br/4.2/ref/cla
     - UpdateView - Atualizar um objeto
     - DeleteView - Deletar um objeto
   
+  - Reescrever cars_view
 
   

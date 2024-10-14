@@ -1,2 +1,4 @@
 venv
 db*
+app/__pycache__
+cars/__pycache__

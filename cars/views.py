@@ -2,24 +2,23 @@ from django.shortcuts import render, redirect
 #from django.http import HttpResponse
 from cars.models import Car
 from cars.forms import CarModelForm
+from django.views import View
 
 # Create your views here.
-def cars_view(request):
-    cars = Car.objects.all().order_by('model')
-    search = request.GET.get('search')
 
-    if search:
-        cars = cars.filter(model__icontains=search) # contains (pesquisa por modelo ignore case)
-        
-    #cars = Car.objects.filter(brand__name='Fiat')
-    #cars = Car.objects.filter(model='Chevette Tubarão') # exact match
-    #cars = Car.objects.filter(model__contains='Chevette') # contains
+class CarsView(View):
+    def get(self, request):
+        cars = Car.objects.all().order_by('model')
+        search = request.GET.get('search')
 
-    return render(
-        request, 
-        'cars.html', 
-        {'cars': cars}
-    )
+        if search:
+            cars = cars.filter(model__icontains=search) # contains (pesquisa por modelo ignore case)
+
+        return render(
+            request, 
+            'cars.html', 
+            {'cars': cars}
+        )
 
 def new_car_view(request):
     if request.method == 'POST':
